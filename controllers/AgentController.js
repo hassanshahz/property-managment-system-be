@@ -9,8 +9,27 @@ const asyncHandler = require("express-async-handler");
 //@access private
 
 const creatAgent = asyncHandler(async(req,res)=>{
-    res.status(200).json({message: 'post new agent'});
-});
+    try {
+        const { name, email, phone } = req.body;
+
+    
+        // Create new agent
+        const newAgent = new Agent({
+          name,
+          email,
+          phone,
+        });
+    
+        await newAgent.save();
+    
+        return res.status(201).json({ message: 'Agent created successfully', agent: newAgent });
+      } catch (error) {
+        return res.status(500).json({ message: 'Server error', error });
+
+}});
+
+
+
 
 
 //------------------------------- AGENT PUT API -----------------------------------
