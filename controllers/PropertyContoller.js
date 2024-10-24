@@ -57,10 +57,8 @@ const getAllProperties = asyncHandler(async (req, res) => {
 // @route   GET /api/properties
 // @access  Public
 const userAllProperties = asyncHandler(async (req, res) => {
-
-    console.log('user id ===', req.user.id)
-
-    const properties = await Property.find({user_id: req.user._id});
+  console.log('sajdlfkds',req.user.id)
+    const properties = await Property.find({user_id: req.user.id});
     res.json(properties);
   });
 
